@@ -1,0 +1,17 @@
+Projet-Banque Conservatoir
+Le Projet est une Application en localhost connecté a une base de donnée mysql.
+L'application est codé en C# et SQL.
+
+INTERFACE
+L'interface permet de sélectionner un adhérents puis avoir accès a toutes ses réservations de cours. Ainsi on peut vérifier si les cours o,n bien été payée ou si il y a 
+un retard e payement.
+
+ARCHITECTURE DU CODE
+Le code est divisé en trois parties:
+
+le controleur, c'est la page index qui va recevoir les informations des pages a afficher mais va également appeler les fonctions.
+le modèle, c'est la bas que ce situe la connexion a la base de donnée ainsi que toutes les fonctions. (La plupart des fonctions requires une connexions a la base de donnée donc j'ai choisis da faire les fonction dans la meme connexions pour ne pas surcharger le code et utiliser qu'une connexion.)
+Les vues, se sont les affichages, une fois les fonctions effectuer, on affiche les return donc dans ces pages.
+
+BASE DE DONNEE
+La base de donnée utilisé en locale est une base de donnée mysql avec un serveur Apache sur l'environnement XAMPP.
