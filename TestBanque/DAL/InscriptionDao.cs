@@ -23,7 +23,7 @@ namespace TestBanque.DAL
                 maConnectionSql = ConnectionSql.getInstance(Fabrique.ProviderMysql, Fabrique.DataBaseMysql, Fabrique.UidMysql, Fabrique.MdpMysql);
                 maConnectionSql.openConnection();
 
-                Ocom = maConnectionSql.reqExec("Select idCours, instrument.id,  instrument.nom, cours.jourDate, inscription.paye from inscription INNER JOIN cours On cours.id = inscription.idCours INNER JOIN instrument On instrument.id = cours.idInstrument WHERE idStudent ="+adherant_Select.Numero+" ;");
+                Ocom = maConnectionSql.reqExec("Select idCours, instrument.id,  instrument.nom, cours.jourDate, inscription.paye, inscription.solde from inscription INNER JOIN cours On cours.id = inscription.idCours INNER JOIN instrument On instrument.id = cours.idInstrument WHERE idStudent ="+adherant_Select.Numero+" ;");
 
 
                 MySqlDataReader reader = Ocom.ExecuteReader();
@@ -36,10 +36,11 @@ namespace TestBanque.DAL
                     string nomC = (string)reader.GetValue(2);
                     string Date = (string)reader.GetValue(3);
                     int paye = (int)reader.GetValue(4);
+                    int solde = (int)reader.GetValue(5);
 
                     Instrument instru_Cours = new Instrument(idInstru, nomC);
                     Cours cours = new Cours(idCours, instru_Cours, paye);
-                    Inscription adh_insc = new Inscription(adherant_Select, cours, paye);
+                    Inscription adh_insc = new Inscription(adherant_Select, cours, paye,solde);
 
                     L_inscr.Add(adh_insc);
 
@@ -92,6 +93,17 @@ namespace TestBanque.DAL
             Ocom = maConnectionSql.reqExec("Delete FROM person WHERE person.id = " + idStudent + "; ");
             Ocom.ExecuteNonQuery();
             maConnectionSql.closeConnection();
+        }
+        public void uptadesolde(Inscription recupinscr)
+        {
+            maConnectionSql = ConnectionSql.getInstance(Fabrique.ProviderMysql, Fabrique.DataBaseMysql, Fabrique.UidMysql, Fabrique.MdpMysql);
+            maConnectionSql.openConnection();
+
+            Ocom = maConnectionSql.reqExec("UPDATE inscription SET solde = " +recupinscr.Solde+ " WHERE  idStudent = " + recupinscr.UnAdherent.Numero + " and idCours = " + recupinscr.UnCours.Idcours);
+            Ocom.ExecuteNonQuery();
+
+            maConnectionSql.closeConnection();
+
         }
     }
 

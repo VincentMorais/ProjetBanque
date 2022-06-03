@@ -44,5 +44,9 @@ namespace TestBanque.Controleur
         {
             Idao.supprstudent(idStudent);
         }
+        public void uptadesolde(Inscription recupinscr)
+        {
+            Idao.uptadesolde(recupinscr);
+        }
     }
 }

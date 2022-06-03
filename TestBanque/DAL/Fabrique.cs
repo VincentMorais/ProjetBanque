@@ -14,7 +14,7 @@ namespace TestBanque.DAL
 
         private static string uidMysql = "root";
 
-        private static string mdpMysql = "";
+        private static string mdpMysql = "root";
        
 
         public static string ProviderMysql { get => providerMysql; }

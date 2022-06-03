@@ -12,13 +12,20 @@ namespace TestBanque.Model
         private Cours unCours;
 
         private int payee;
+        private int solde;
 
 
-        public Inscription(Adherent unAdherent, Cours unCours, int payee = 1)
+        public Inscription(Adherent unAdherent, Cours unCours, int payee, int solde)
         {
             this.unAdherent = unAdherent;
             this.unCours = unCours;
             this.payee = payee;
+            this.solde = solde;
+            
+        }
+        public void crediter(int montant)
+        {
+            solde = montant + solde;
             
         }
 
@@ -38,11 +45,12 @@ namespace TestBanque.Model
         public int Payee { get => Payee; } 
         public Adherent UnAdherent { get => unAdherent; }
         public Cours UnCours { get => unCours; }
+        public int Solde { get => solde; }
      
 
         public override string ToString()
         {
-            return ("Cours :"+ unCours.NomInstru+" ; payee : "+this.payee+" ; ");
+            return ("Cours :"+ unCours.NomInstru+" ; payee : "+this.payee+" ; Solde"+this.solde+";");
         }
     }  
 }
